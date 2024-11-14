@@ -32,7 +32,7 @@ if (!$user) {
 
 .cart-container {
     flex-grow: 1; /* Allows the cart items container to take remaining space */
-    padding: 20px;
+    padding: 200px;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -41,7 +41,7 @@ if (!$user) {
 .summary-container {
     width: 300px; /* Fixed width for the summary container */
     height: 320px;
-    padding: 20px;
+    padding: 90px;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

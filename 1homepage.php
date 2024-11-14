@@ -19,6 +19,110 @@ $user = $_SESSION['user'];
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+<style>
+		/* Positioning the dropdown menu */
+.navbar_user .dropdown-menu {
+    position: absolute;
+    top: 100%; /* Positioning the dropdown just below the icon */
+    right: 0;
+    display: none; /* Hidden by default */
+    min-width: 150px; /* Width of the dropdown */
+    background-color: #fff; /* Background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+/* Show the dropdown menu on hover */
+.navbar_user .dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Styling for each dropdown item */
+.navbar_user .dropdown-menu .dropdown-item {
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+
+/* Hover effect for dropdown items */
+.navbar_user .dropdown-menu .dropdown-item:hover {
+    background-color: #f0f0f0; 
+    color: #000; 
+	width: 100%;
+}
+
+.navbar_user .search-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    display: none; /* Hidden by default */
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1000;
+    min-width: 300px;
+}
+
+/* Show dropdown when .show class is added */
+.navbar_user .search-dropdown.show {
+    display: block;
+}
+
+/* Styling the search input */
+.search-dropdown .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Styling the name list */
+.name-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Styling each name item */
+.name-item {
+    display: flex;
+    align-items: center;  /* Align image and name text vertically */
+    padding: 10px;
+    cursor: pointer;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* Hover effect for full-width highlight */
+.name-item:hover {
+    background-color: #f0f0f0;
+    width: 100%;
+}
+.name-item-img {
+    width: 30px;  /* Adjust size */
+    height: 30px; /* Adjust size */
+    border-radius: 50%;  /* Circle the image */
+    margin-right: 10px;  /* Space between image and text */
+    position: absolute;  /* Fix it to the left */
+    left: 10px;
+}
+
+/* Ensure text aligns properly with the image */
+.name-item-text {
+    padding-left: 50px; /* Create space for the fixed image */
+    width: 100%;
+}
+	</style>
 </head>
 
 <body>
@@ -45,32 +149,68 @@ $user = $_SESSION['user'];
 							<a href="#"><img src="assets/1.png"></a>
 						</div>
 						<nav class="navbar">
-							<ul class="navbar_menu">
-								<li><a href="#">home</a></li>
-								<li><a href="3shop.php">shop</a></li>
-								<li><a href="3new.php">new</a></li>
-								<li><a href="3onsale.php">on sale</a></li>
-								<li><a href="4recentorders.php">Recent Orders</a></li>
-                                    <li> <a href="logout.php" class="logout">Logout</a><li>
-							</ul>
-							<ul class="navbar_user">
-								<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-								<li><a href="4myacc.php"><i class="fa fa-user" aria-hidden="true"></i></a></li>
-								<li class="checkout">
-									<a href="3cart.php">
-										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										<span id="checkout_items" class="checkout_items">0</span>
-									</a>
-								</li>
-							</ul>
-							<div class="hamburger_container">
-								<i class="fa fa-bars" aria-hidden="true"></i>
-							</div>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</div>
+                    <ul class="navbar_menu">
+                        <li><a href="#">home</a></li>
+                        <li><a href="3shop.php">shop</a></li>
+                        <li><a href="3new.php">new</a></li>
+                        
+                    </ul>
+                    <ul class="navbar_user">
+					<li class="dropdown">
+        <a href="#" id="searchDropdown" role="button" onclick="toggleDropdown(event)" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu search-dropdown" id="searchDropdownMenu">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search..." onkeyup="filterNames()">
+			<ul id="nameList" class="name-list">
+                <li class="name-item">
+                    <img src="assets/359801864_251602164294072_4089427261190148458_n.jpg" alt="1" class="name-item-img">
+                    LETS GET HIGH
+                </li>
+                <li class="name-item">
+                    <img src="assets/359801864_251602164294072_4089427261190148458_n.jpg" alt="2" class="name-item-img">
+                    LUCKY BLACK
+                </li>
+                <li class="name-item">
+                    <img src="assets/359801864_251602164294072_4089427261190148458_n.jpg" alt="3" class="name-item-img">
+                    CHASE DREAM BLUE
+                </li>
+                <li class="name-item">
+                    <img src="assets/359801864_251602164294072_4089427261190148458_n.jpg" alt="4" class="name-item-img">
+                    COLDEST BLUE
+                </li>
+            </ul>
+        </div>
+    </li>
+                        
+                        <!-- User Dropdown -->
+                        <li class="dropdown">
+                            <a href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="4login.php">Sign In</a>
+                                <a class="dropdown-item" href="7adminlogin.php">Admin</a>
+								<a class="dropdown-item" href="7adminlogin.php">Recent Orders</a>
+								<a class="dropdown-item" href="7adminlogin.php">Logout</a>
+                            </div>
+                        </li>
+                        
+                        <li class="checkout">
+                            <a href="3cart.php">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                <span id="checkout_items" class="checkout_items">0</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="hamburger_container">
+                        <i class="fa fa-bars" aria-hidden="true"></i>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
 
 	</header>
 
@@ -691,6 +831,39 @@ $user = $_SESSION['user'];
             mainNav.classList.remove('opaque');
         }
     });
+</script>
+<script>
+// Toggle dropdown display on search icon click
+function toggleDropdown(event) {
+    event.stopPropagation(); // Prevent event from bubbling to the document
+    const dropdown = document.getElementById("searchDropdownMenu");
+    dropdown.classList.toggle("show");
+}
+
+// Filter names in real time as user types
+function filterNames() {
+    const input = document.getElementById("searchInput");
+    const filter = input.value.toLowerCase();
+    const nameList = document.getElementById("nameList");
+    const items = nameList.getElementsByClassName("name-item");
+
+    for (let i = 0; i < items.length; i++) {
+        const txtValue = items[i].textContent || items[i].innerText;
+        items[i].style.display = txtValue.toLowerCase().indexOf(filter) > -1 ? "" : "none";
+    }
+}
+
+// Close the dropdown if the user clicks outside of it
+document.addEventListener("click", function(event) {
+    const dropdown = document.getElementById("searchDropdownMenu");
+    const searchIcon = document.getElementById("searchDropdown");
+    
+    if (!dropdown.contains(event.target) && !searchIcon.contains(event.target)) {
+        dropdown.classList.remove("show");
+    }
+});
+
+
 </script>
 </body>
 

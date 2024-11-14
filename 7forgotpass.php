@@ -51,10 +51,10 @@ mysqli_close($conn);
         }
         .login-container {
             background-color: white;
-            padding: 30px;
+            padding: 90px;
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-            width: 350px;
+            width: 500px;
             margin: 200px auto; /* Center the form */
             text-align: center;
         }
@@ -62,6 +62,9 @@ mysqli_close($conn);
             margin-bottom: 20px;
             font-size: 30px;
             color: black;
+            font-weight: bold;
+        }
+        h4{
             font-weight: bold;
         }
         label {
@@ -206,27 +209,26 @@ mysqli_close($conn);
                 <div class="col">
                     <!-- Login Form -->
                     <div class="login-container">
-                        <img src="assets/2.png" class="footer-logo">
-                        <form method="POST">
-                            <label for="username">Username:</label>
-                            <input type="text" id="username" name="username" required>
-                            
-                            <label for="password">Password:</label>
-                            <div style="position: relative;">
-                                <input type="password" id="password" name="password" required>
-                                <i id="toggle-password-icon" class="fa fa-eye toggle-password" onclick="togglePassword()"></i>
-                            </div>
-                            
-                            <input type="submit" name="login" value="Login">
-                            <div class="forgot-password">
-                                <a href="7forgotpass.php">Forgot Password?</a>
-                            </div>
-                            <br>
-                            <div class="sign-up-link">
-                               <a>Don't have an account? </a> <a href="4signup.php">Sign up</a>
-                            </div>
-                        </form>
-                    </div>
+    <h4>Change your password</h4>
+    <p>Enter a new password below to change your password</p>
+    <form method="POST">
+        <!-- Corrected label and field for new password -->
+        <label for="new-password">New Password:</label>
+        <div style="position: relative;">
+            <input type="password" id="new-password" name="new-password" required>
+            <i id="toggle-new-password-icon" class="fa fa-eye toggle-password" onclick="togglePassword('new-password')"></i>
+        </div>
+
+        <!-- Corrected label and field for confirm password -->
+        <label for="confirm-password">Confirm Password:</label>
+        <div style="position: relative;">
+            <input type="password" id="confirm-password" name="confirm-password" required>
+            <i id="toggle-confirm-password-icon" class="fa fa-eye toggle-password" onclick="togglePassword('confirm-password')"></i>
+        </div>
+
+        <input type="submit" name="changepass" value="Change Password">
+    </form>
+</div>
                 </div>
             </div>
         </div>
